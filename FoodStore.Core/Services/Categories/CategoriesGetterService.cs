@@ -31,7 +31,7 @@ namespace FoodStore.Core.Services.Categories
                 throw new ArgumentNullException(nameof(categoryID));
             }
             // Making sure the given id exists inside the data store
-            Category? category = await _categoriesRepository.GetCategoryByID(categoryID.Value) ?? throw new InvalidCategoryIDException("Given category id doesn't exist");
+            Category? category = await _categoriesRepository.GetCategoryByID(categoryID.Value) ?? throw new InvalidCategoryIDException("Given CategoryID doesn't exist or not formatted correctly");
 
             // Performing the deletion operation using the given ID
             return category.ToCategoryResponse();
