@@ -47,11 +47,12 @@ namespace FoodStore.API.Middelware
 
             var responseObject = new
             {
-                ExceptionType = exception.GetType().Name,
-                ExceptionMessage = exception.Message
+                StatusCode = statusCode,
+                Type = exception.GetType().Name,
+                Message = exception.Message
             };
 
-            string jsonString = JsonSerializer.Serialize(responseObject);
+            string jsonString = JsonSerializer.Serialize(new { Error = responseObject });
 
             return context.Response.WriteAsync(jsonString);
         }

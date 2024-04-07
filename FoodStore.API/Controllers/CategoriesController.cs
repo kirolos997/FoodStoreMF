@@ -1,4 +1,5 @@
-﻿using FoodStore.Core.ServicesContracts.ICategories;
+﻿using FoodStore.Application.DTO.Categories;
+using FoodStore.Core.ServicesContracts.ICategories;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -6,29 +7,31 @@ using Microsoft.AspNetCore.Mvc;
 namespace FoodStore.API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoriesGetterService _categoriesGetterService;
         public CategoriesController(ICategoriesGetterService categoriesGetterService)
         {
+            // Using dependency injection to reach the needed service
             _categoriesGetterService = categoriesGetterService;
         }
 
-        // GET: api/<CategoriesController>
+        // GET: api/Categories/
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var test = await _categoriesGetterService.GetAllCategories();
+            List<CategoryResponse>? respone = await _categoriesGetterService.GetAllCategories();
 
-            return Ok(test);
+            return Ok(respone);
         }
 
-        // GET api/<CategoriesController>/5
+        // GET api/Categories/GUID
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return "value";
+            CategoryResponse? respone = await _categoriesGetterService.GetCategoryByCategoryID(id);
+
+            return Ok(respone);
         }
 
         // POST api/<CategoriesController>

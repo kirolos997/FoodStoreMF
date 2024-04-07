@@ -1,3 +1,4 @@
+using FoodStore.API.Middelware;
 using FoodStore.Core.RepositoriesContracts;
 using FoodStore.Core.Services.Categories;
 using FoodStore.Core.ServicesContracts.ICategories;
@@ -16,14 +17,16 @@ builder.Services.AddDbContext<FoodStoreDbContext>(options =>
     options.UseSqlServer(connectionString);
 });
 
-builder.Services.AddTransient<ICategoriesRepository, CategoryRepository>();
-builder.Services.AddTransient<ICategoriesGetterService, CategoriesGetterService>();
+builder.Services.AddScoped<ICategoriesRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoriesGetterService, CategoriesGetterService>();
 
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+app.UseExceptionHandlingMiddleware();
 
 app.UseHttpsRedirection();
 
