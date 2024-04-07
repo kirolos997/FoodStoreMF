@@ -33,6 +33,8 @@ namespace FoodStore.Infrastrucutre.DBContext
             foreach (Product item in products)
                 modelBuilder.Entity<Product>().HasData(item);
 
+            // Prevent the cascade on delete for the products
+            modelBuilder.Entity<Category>().HasOne<Product>().WithMany().OnDelete(DeleteBehavior.SetNull);
 
             // Calling OnModelCreating method from the DbContext class
             base.OnModelCreating(modelBuilder);

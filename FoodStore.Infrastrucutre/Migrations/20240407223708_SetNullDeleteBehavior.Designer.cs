@@ -4,6 +4,7 @@ using FoodStore.Infrastrucutre.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodStore.Infrastrucutre.Migrations
 {
     [DbContext(typeof(FoodStoreDbContext))]
-    partial class FoodStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240407223708_SetNullDeleteBehavior")]
+    partial class SetNullDeleteBehavior
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
