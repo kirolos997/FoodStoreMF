@@ -22,8 +22,8 @@ builder.Services.AddTransient<ValidateModelAttributes>();
 
 builder.Services.AddScoped<ICategoriesRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoriesGetterService, CategoriesGetterService>();
-
 builder.Services.AddScoped<ICategoriesUpdaterService, CategoriesUpdaterService>();
+builder.Services.AddScoped<ICategoriesDeleterService, CategoriesDeleterService>();
 
 builder.Services.AddControllers();
 

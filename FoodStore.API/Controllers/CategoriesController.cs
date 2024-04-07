@@ -12,11 +12,13 @@ namespace FoodStore.API.Controllers
     {
         private readonly ICategoriesGetterService _categoriesGetterService;
         private readonly ICategoriesUpdaterService _categoriesUpdaterService;
-        public CategoriesController(ICategoriesGetterService categoriesGetterService, ICategoriesUpdaterService categoriesUpdaterService)
+        private readonly ICategoriesDeleterService _categoriesDeleterService;
+        public CategoriesController(ICategoriesGetterService categoriesGetterService, ICategoriesUpdaterService categoriesUpdaterService, ICategoriesDeleterService categoriesDeleterService)
         {
             // Using dependency injection to reach the needed service
             _categoriesGetterService = categoriesGetterService;
             _categoriesUpdaterService = categoriesUpdaterService;
+            _categoriesDeleterService = categoriesDeleterService;
         }
 
         // GET: api/Categories/
@@ -30,6 +32,7 @@ namespace FoodStore.API.Controllers
 
         // GET api/Categories/GUID
         [HttpGet("{id}")]
+        [TypeFilter(typeof(ValidateModelAttributes))]
         public async Task<IActionResult> Get([FromRoute] Guid id)
         {
             CategoryResponse? respone = await _categoriesGetterService.GetCategoryByCategoryID(id);
@@ -48,10 +51,13 @@ namespace FoodStore.API.Controllers
         }
 
         // DELETE api/Categories/GUID
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("{categoryID}")]
+        [TypeFilter(typeof(ValidateModelAttributes))]
+        public async Task<IActionResult> Delete([FromRoute] Guid categoryID)
         {
-            return Ok();
+            _ = await _categoriesDeleterService.DeleteCategory(categoryID);
+
+            return NoContent();
         }
 
         // POST api/<CategoriesController>
