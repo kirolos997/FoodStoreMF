@@ -1,3 +1,4 @@
+using FoodStore.API.Filters;
 using FoodStore.API.Middelware;
 using FoodStore.Core.RepositoriesContracts;
 using FoodStore.Core.Services.Categories;
@@ -17,8 +18,12 @@ builder.Services.AddDbContext<FoodStoreDbContext>(options =>
     options.UseSqlServer(connectionString);
 });
 
+builder.Services.AddTransient<ValidateModelAttributes>();
+
 builder.Services.AddScoped<ICategoriesRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoriesGetterService, CategoriesGetterService>();
+
+builder.Services.AddScoped<ICategoriesUpdaterService, CategoriesUpdaterService>();
 
 builder.Services.AddControllers();
 
