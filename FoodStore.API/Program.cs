@@ -1,4 +1,8 @@
+using FoodStore.Core.RepositoriesContracts;
+using FoodStore.Core.Services.Categories;
+using FoodStore.Core.ServicesContracts.ICategories;
 using FoodStore.Infrastrucutre.DBContext;
+using FoodStore.Infrastrucutre.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +15,9 @@ builder.Services.AddDbContext<FoodStoreDbContext>(options =>
 
     options.UseSqlServer(connectionString);
 });
+
+builder.Services.AddTransient<ICategoriesRepository, CategoryRepository>();
+builder.Services.AddTransient<ICategoriesGetterService, CategoriesGetterService>();
 
 builder.Services.AddControllers();
 
