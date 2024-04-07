@@ -31,7 +31,9 @@ namespace FoodStore.Application.DTO.Products
                 ProductId = product.ProductId,
                 ProductName = product.ProductName,
                 Price = product.Price,
-                ProductDescription = product.ProductDescription
+                ProductDescription = product.ProductDescription,
+                InStore = product.InStore,
+                CategoryId = product.CategoryId
             };
         }
     }

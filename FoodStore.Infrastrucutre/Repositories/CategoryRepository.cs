@@ -17,13 +17,14 @@ namespace FoodStore.Infrastrucutre.Repositories
 
         public async Task<List<Category>> GetAllCategories()
         {
-            return await _db.categories.ToListAsync();
+            return await _db.categories.Include("products").ToListAsync();
         }
 
         public async Task<Category?> GetCategoryByID(Guid ID)
         {
-            return await _db.categories.FirstOrDefaultAsync(item => item.CategoryId == ID);
+            return await _db.categories.Include("products").FirstOrDefaultAsync(item => item.CategoryId == ID);
         }
+
 
     }
 }

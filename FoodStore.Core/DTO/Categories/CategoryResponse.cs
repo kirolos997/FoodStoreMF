@@ -1,4 +1,5 @@
-﻿using FoodStore.Core.Entities;
+﻿using FoodStore.Application.DTO.Products;
+using FoodStore.Core.Entities;
 
 namespace FoodStore.Application.DTO.Categories
 {
@@ -10,6 +11,9 @@ namespace FoodStore.Application.DTO.Categories
         public Guid CategoryID { get; set; }
 
         public string? CategoryName { get; set; }
+
+        public List<ProductResponse>? Products { get; set; }
+
 
         /// <summary>
         /// Converts the current object of CategoryAddRequest into a new object of Category type
@@ -33,6 +37,7 @@ namespace FoodStore.Application.DTO.Categories
             {
                 CategoryID = category.CategoryId,
                 CategoryName = category.Name,
+                Products = category.products.Select(p => p.ToProductResponse()).ToList()
 
             };
         }
