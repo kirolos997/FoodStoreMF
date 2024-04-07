@@ -1,6 +1,7 @@
 ﻿using FoodStore.Core.Exceptions.Categories;
+using FoodStore.Core.Helpers;
+using Newtonsoft.Json;
 using System.Net;
-using System.Text.Json;
 
 namespace FoodStore.API.Middelware
 {
@@ -45,14 +46,14 @@ namespace FoodStore.API.Middelware
             // Write a response message
             context.Response.ContentType = "application/json";
 
-            var responseObject = new
+            var responseObject = new ErrorResponse
             {
                 StatusCode = statusCode,
-                Type = exception.GetType().Name,
+                ErrorType = exception.GetType().Name,
                 Message = exception.Message
             };
 
-            string jsonString = JsonSerializer.Serialize(new { Error = responseObject });
+            string jsonString = JsonConvert.SerializeObject(new { Error = responseObject });
 
             return context.Response.WriteAsync(jsonString);
         }
