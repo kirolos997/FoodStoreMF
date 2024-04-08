@@ -1,16 +1,13 @@
 ﻿using FoodStore.Core.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace FoodStore.Application.DTO.Products
+namespace FoodStore.Core.DTO.Products.v1
 {
     /// <summary>
-    /// DTO for updating new product request object
+    /// DTO for adding new product request object
     /// </summary>
-    public class ProductUpdateRequest
+    public class ProductAddRequest
     {
-        [Required(ErrorMessage = "Product ID can't be blank")]
-        public Guid ProductId { get; set; }
-
         [Required(ErrorMessage = "Product name can't be blank")]
         [StringLength(50, ErrorMessage = "Product name can't be more than 50 characters")]
         public string ProductName { get; set; }
@@ -32,19 +29,22 @@ namespace FoodStore.Application.DTO.Products
 
 
         /// <summary>
-        /// Converts the current object of ProductUpdateRequest into a new object of Product type
+        /// Converts the current object of ProductAddRequest into a new object of Product type
         /// </summary>
         /// <returns></returns>
+
         public Product ToProduct()
         {
             return new Product()
             {
-                ProductName = this.ProductName,
-                Price = this.Price,
-                ProductDescription = this.ProductDescription,
-                CategoryId = this.CategoryId,
-                InStore = this.InStore
+                ProductName = ProductName,
+                Price = Price,
+                ProductDescription = ProductDescription,
+                CategoryId = CategoryId,
+                InStore = InStore
             };
         }
+
     }
+
 }

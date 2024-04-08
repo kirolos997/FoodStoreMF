@@ -1,6 +1,6 @@
 ﻿using FoodStore.Core.Entities;
 
-namespace FoodStore.Application.DTO.Products
+namespace FoodStore.Core.DTO.Products.v1
 {
     public class ProductResponse
     {
