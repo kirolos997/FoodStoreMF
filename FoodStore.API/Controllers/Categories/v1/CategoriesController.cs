@@ -1,15 +1,15 @@
-﻿using FoodStore.API.Filters;
-using FoodStore.Application.DTO.Categories;
-using FoodStore.Core.ServicesContracts.ICategories;
+﻿using Asp.Versioning;
+using FoodStore.Core.DTO.Categories.v1;
+using FoodStore.Core.ServicesContracts.ICategories.v1;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace FoodStore.API.Controllers
+namespace FoodStore.API.Controllers.Categories.v1
 {
-    [Route("api/[controller]")]
-    [TypeFilter(typeof(ControllerLogger))]
-    public class CategoriesController : ControllerBase
+
+    [ApiVersion("1")]
+    public class CategoriesController : BaseController
     {
         private readonly ICategoriesGetterService _categoriesGetterService;
         private readonly ICategoriesUpdaterService _categoriesUpdaterService;
@@ -39,7 +39,6 @@ namespace FoodStore.API.Controllers
 
         // GET api/Categories/GUID
         [HttpGet("{id}")]
-        [TypeFilter(typeof(ValidateModelAttributes))]
         public async Task<IActionResult> Get([FromRoute] Guid id)
         {
             CategoryResponse? respone = await _categoriesGetterService.GetCategoryByCategoryID(id);
@@ -49,7 +48,6 @@ namespace FoodStore.API.Controllers
 
         // PUT api/Categories/GUID
         [HttpPut("{categoryID}")]
-        [TypeFilter(typeof(ValidateModelAttributes))]
         public async Task<IActionResult> Put([FromRoute] Guid categoryID, [FromBody] CategoryUpdateRequest categoryUpdateRequest)
         {
             CategoryResponse? respone = await _categoriesUpdaterService.UpdateCategory(categoryID, categoryUpdateRequest);
@@ -59,7 +57,6 @@ namespace FoodStore.API.Controllers
 
         // DELETE api/Categories/GUID
         [HttpDelete("{categoryID}")]
-        [TypeFilter(typeof(ValidateModelAttributes))]
         public async Task<IActionResult> Delete([FromRoute] Guid categoryID)
         {
             _ = await _categoriesDeleterService.DeleteCategory(categoryID);
@@ -69,7 +66,6 @@ namespace FoodStore.API.Controllers
 
         // POST api/Categories
         [HttpPost]
-        [TypeFilter(typeof(ValidateModelAttributes))]
         public async Task<IActionResult> Post([FromBody] CategoryAddRequest categoryAddRequest)
         {
             CategoryResponse? respone = await _categoriesAdderService.AddCategory(categoryAddRequest);
