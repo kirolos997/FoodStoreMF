@@ -21,6 +21,12 @@ namespace FoodStore.Infrastrucutre.Repositories
             // Using navigation property
             return await _db.products.Include("Category").ToListAsync();
         }
+        public async Task<Product?> GetProductByName(string productName)
+        {
+            string modifiedProductName = productName.ToLower().Trim().Replace(" ", "");
+
+            return await _db.products.Include("Category").FirstOrDefaultAsync(item => item.ProductName.ToLower().Trim().Replace(" ", "").Contains(modifiedProductName));
+        }
 
 
         public async Task<Product?> GetProductByID(Guid productID)
@@ -63,5 +69,13 @@ namespace FoodStore.Infrastrucutre.Repositories
             return retrievedItem;
         }
 
+        public async Task<Product> AddProduct(Product product)
+        {
+            _db.products.Add(product);
+
+            await _db.SaveChangesAsync();
+
+            return product;
+        }
     }
 }
