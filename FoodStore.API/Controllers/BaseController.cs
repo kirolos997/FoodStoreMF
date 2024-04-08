@@ -1,7 +1,7 @@
 ﻿using FoodStore.API.Filters;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FoodStore.API.Controllers.Categories
+namespace FoodStore.API.Controllers
 {
     [Route("api/v{version:apiVersion}/[controller]")]
     [TypeFilter(typeof(ControllerLogger))]
