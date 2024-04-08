@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
+using Newtonsoft.Json;
 
 namespace FoodStore.API.Filters
 {
     public class ControllerLogger : IActionFilter
     {
-        private readonly ILogger _logger;
-        public ControllerLogger(ILogger logger)
+        private readonly ILogger<ControllerLogger> _logger;
+        public ControllerLogger(ILogger<ControllerLogger> logger)
         {
             _logger = logger;
         }
@@ -26,7 +27,15 @@ namespace FoodStore.API.Filters
             // Loop through each argument
             foreach (var (key, value) in arguments)
             {
-                _logger.LogDebug("Argument Name: {key}, Argument Value: {value}", key, value);
+                if (value is object)
+                {
+                    _logger.LogDebug("Argument Name: {key}, Argument Value: {value}", key, JsonConvert.SerializeObject(value));
+                }
+                else
+                {
+                    _logger.LogDebug("Argument Name: {key}, Argument Value: {value}", key, value);
+                }
+
             }
 
         }
