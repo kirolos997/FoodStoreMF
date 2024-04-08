@@ -22,6 +22,12 @@ namespace FoodStore.Core.RepositoriesContracts
         /// <returns>A product object or null</returns>
         Task<Product?> GetProductByID(Guid productID);
 
+        /// <summary>
+        /// Returns a product object based on the given productName; otherwise, it returns null
+        /// </summary>
+        /// <param name="productName">productName to search</param>
+        /// <returns>Matching product or null</returns>
+        Task<Product?> GetProductByName(string productName);
 
         /// <summary>
         /// Deletes a product object based on the id
@@ -38,5 +44,12 @@ namespace FoodStore.Core.RepositoriesContracts
         /// <param name="productID">productID (guid) to search</param>
         /// <returns>Returns the updated product object</returns>
         Task<Product?> UpdateProduct(Guid? productID, Product product);
+
+        /// <summary>
+        /// Adds a product object to the data store
+        /// </summary>
+        /// <param name="product">product object to add</param>
+        /// <returns>Returns the product object after adding it to the table</returns>
+        Task<Product> AddProduct(Product product);
     }
 }
