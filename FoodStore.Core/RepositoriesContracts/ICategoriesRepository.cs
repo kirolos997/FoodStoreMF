@@ -21,6 +21,13 @@ namespace FoodStore.Core.RepositoriesContracts
         Task<Category?> GetCategoryByID(Guid ID);
 
         /// <summary>
+        /// Returns a category object based on the given categoryName; otherwise, it returns null
+        /// </summary>
+        /// <param name="categoryName">categoryName to search</param>
+        /// <returns>Matching category or null</returns>
+        Task<Category?> GetCategoryByName(string categoryName);
+
+        /// <summary>
         /// Deletes a category object based on the id
         /// </summary>
         /// <param name="categoryID">Category ID (guid) to search</param>
@@ -33,6 +40,15 @@ namespace FoodStore.Core.RepositoriesContracts
         /// <param name="category">Category object to update</param>
         /// <returns>Returns the updated category object</returns>
         Task<Category?> UpdateCategory(Guid? categoryID, Category category);
+
+
+        /// <summary>
+        /// Adds a new category object to the data store
+        /// </summary>
+        /// <param name="category">Category object to add</param>
+        /// <returns>Returns the category object after adding it to the data store</returns>
+        Task<Category> AddCategory(Category category);
+
 
     }
 }

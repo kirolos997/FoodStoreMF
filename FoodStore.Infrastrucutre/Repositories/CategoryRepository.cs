@@ -24,6 +24,12 @@ namespace FoodStore.Infrastrucutre.Repositories
         {
             return await _db.categories.Include("products").FirstOrDefaultAsync(item => item.CategoryId == ID);
         }
+        public async Task<Category?> GetCategoryByName(string categoryName)
+        {
+            string modifiedCategoryName = categoryName.ToLower().Trim().Replace(" ", "");
+
+            return await _db.categories.Include("products").FirstOrDefaultAsync(item => item.Name.ToLower().Trim().Replace(" ", "").Contains(modifiedCategoryName));
+        }
 
         public async Task<bool> DeleteCategoryByID(Guid categoryID)
         {
@@ -46,5 +52,16 @@ namespace FoodStore.Infrastrucutre.Repositories
 
             return retrievedItem;
         }
+
+        public async Task<Category> AddCategory(Category category)
+        {
+            _db.categories.Add(category);
+
+            await _db.SaveChangesAsync();
+
+            return category;
+        }
+
+
     }
 }
