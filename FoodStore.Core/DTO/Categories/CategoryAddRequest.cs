@@ -8,7 +8,7 @@ namespace FoodStore.Application.DTO.Categories
     /// </summary>
     public class CategoryAddRequest
     {
-        [Required(ErrorMessage = "Category name can't be blank")]
+        [Required(ErrorMessage = "Category name can't be blank or missing")]
         [StringLength(50, ErrorMessage = "Category name can't be more than 50 characters")]
         public string? CategoryName { get; set; }
 

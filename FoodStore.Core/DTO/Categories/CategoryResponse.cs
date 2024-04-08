@@ -37,7 +37,7 @@ namespace FoodStore.Application.DTO.Categories
             {
                 CategoryID = category.CategoryId,
                 CategoryName = category.Name,
-                Products = category.products.Select(p => p.ToProductResponse()).ToList()
+                Products = category.products?.Select(p => p.ToProductResponse()).ToList()
 
             };
         }
