@@ -1,4 +1,5 @@
-﻿using FoodStore.Core.DTO.Products.v1;
+﻿using FoodStore.Core.DTO.Pagination;
+using FoodStore.Core.DTO.Products.v1;
 using FoodStore.Core.ServicesContracts.IProducts;
 using FoodStore.Core.ServicesContracts.IProducts.v1;
 using Microsoft.AspNetCore.Mvc;
@@ -26,9 +27,9 @@ namespace FoodStore.API.Controllers.Products.v1
         }
         // GET: api/Products
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] Pagination pagination)
         {
-            List<ProductResponse>? respone = await _productsGetterService.GetAllProducts();
+            List<ProductResponse>? respone = await _productsGetterService.GetAllProducts(pagination);
 
             return Ok(respone);
         }
