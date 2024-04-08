@@ -1,4 +1,5 @@
 ﻿using FoodStore.Core.DTO.Products.v1;
+using FoodStore.Core.ServicesContracts.IProducts;
 using FoodStore.Core.ServicesContracts.IProducts.v1;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,12 +12,17 @@ namespace FoodStore.API.Controllers.Products.v1
         private readonly IProductsGetterService _productsGetterService;
         private readonly IProductsUpdaterService _productsUpdaterService;
         private readonly IProductsDeleterService _productsDeleterService;
+        private readonly IProductsAdderService _productsAdderService;
 
-        public ProductsController(IProductsGetterService productsGetterService, IProductsUpdaterService productsUpdaterService, IProductsDeleterService productsDeleterService)
+        public ProductsController(IProductsGetterService productsGetterService,
+            IProductsUpdaterService productsUpdaterService,
+            IProductsDeleterService productsDeleterService,
+            IProductsAdderService productsAdderService)
         {
             _productsGetterService = productsGetterService;
             _productsUpdaterService = productsUpdaterService;
             _productsDeleterService = productsDeleterService;
+            _productsAdderService = productsAdderService;
         }
         // GET: api/Products
         [HttpGet]
@@ -54,12 +60,14 @@ namespace FoodStore.API.Controllers.Products.v1
             return NoContent();
         }
 
-        // POST api/<ProductsController>
+        // POST api/Products/
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] ProductAddRequest productAddRequest)
         {
-        }
+            ProductResponse? respone = await _productsAdderService.AddProduct(productAddRequest);
 
+            return Ok(respone);
+        }
 
     }
 }
