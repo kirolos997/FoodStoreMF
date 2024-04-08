@@ -13,12 +13,17 @@ namespace FoodStore.API.Controllers
         private readonly ICategoriesGetterService _categoriesGetterService;
         private readonly ICategoriesUpdaterService _categoriesUpdaterService;
         private readonly ICategoriesDeleterService _categoriesDeleterService;
-        public CategoriesController(ICategoriesGetterService categoriesGetterService, ICategoriesUpdaterService categoriesUpdaterService, ICategoriesDeleterService categoriesDeleterService)
+        private readonly ICategoriesAdderService _categoriesAdderService;
+        public CategoriesController(ICategoriesGetterService categoriesGetterService,
+            ICategoriesUpdaterService categoriesUpdaterService,
+            ICategoriesDeleterService categoriesDeleterService,
+            ICategoriesAdderService categoriesAdderService)
         {
             // Using dependency injection to reach the needed service
             _categoriesGetterService = categoriesGetterService;
             _categoriesUpdaterService = categoriesUpdaterService;
             _categoriesDeleterService = categoriesDeleterService;
+            _categoriesAdderService = categoriesAdderService;
         }
 
         // GET: api/Categories/
@@ -60,10 +65,14 @@ namespace FoodStore.API.Controllers
             return NoContent();
         }
 
-        // POST api/<CategoriesController>
+        // POST api/Categories
         [HttpPost]
-        public void Post([FromBody] string value)
+        [TypeFilter(typeof(ValidateModelAttributes))]
+        public async Task<IActionResult> Post([FromBody] CategoryAddRequest categoryAddRequest)
         {
+            CategoryResponse? respone = await _categoriesAdderService.AddCategory(categoryAddRequest);
+
+            return Ok(respone);
         }
 
 

@@ -24,6 +24,7 @@ builder.Services.AddScoped<ICategoriesRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoriesGetterService, CategoriesGetterService>();
 builder.Services.AddScoped<ICategoriesUpdaterService, CategoriesUpdaterService>();
 builder.Services.AddScoped<ICategoriesDeleterService, CategoriesDeleterService>();
+builder.Services.AddScoped<ICategoriesAdderService, CategoriesAdderService>();
 
 builder.Services.AddControllers();
 
