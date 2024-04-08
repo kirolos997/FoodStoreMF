@@ -3,8 +3,10 @@ using FoodStore.API.Filters;
 using FoodStore.API.Middelware;
 using FoodStore.Core.RepositoriesContracts;
 using FoodStore.Core.Services.Categories.v1;
+using FoodStore.Core.Services.Products;
 using FoodStore.Core.Services.Products.v1;
 using FoodStore.Core.ServicesContracts.ICategories.v1;
+using FoodStore.Core.ServicesContracts.IProducts;
 using FoodStore.Core.ServicesContracts.IProducts.v1;
 using FoodStore.Infrastrucutre.DBContext;
 using FoodStore.Infrastrucutre.Repositories;
@@ -27,6 +29,12 @@ var apiVersioningBuilder = builder.Services.AddApiVersioning(config =>
     config.ApiVersionReader = new UrlSegmentApiVersionReader();
     config.DefaultApiVersion = new ApiVersion(1);
     config.AssumeDefaultVersionWhenUnspecified = true;
+});
+
+apiVersioningBuilder.AddApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'VVV"; //v1
+    options.SubstituteApiVersionInUrl = true;
 });
 
 // Add services to the container.
@@ -60,12 +68,9 @@ builder.Services.AddScoped<ICategoriesAdderService, CategoriesAdderService>();
 builder.Services.AddScoped<IProductsGetterService, ProductsGetterService>();
 builder.Services.AddScoped<IProductsDeleterService, ProductsDeleterService>();
 builder.Services.AddScoped<IProductsUpdaterService, ProductsUpdaterService>();
+builder.Services.AddScoped<IProductsAdderService, ProductsAdderService>();
 
-apiVersioningBuilder.AddApiExplorer(options =>
-{
-    options.GroupNameFormat = "'v'VVV"; //v1
-    options.SubstituteApiVersionInUrl = true;
-});
+
 
 
 var app = builder.Build();

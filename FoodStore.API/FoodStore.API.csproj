@@ -26,4 +26,8 @@
     <ProjectReference Include="..\FoodStore.Infrastrucutre\FoodStore.Infrastrucutre.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Logs\" />
+  </ItemGroup>
+
 </Project>
