@@ -8,12 +8,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace FoodStore.API.Controllers
 {
     [Route("api/[controller]")]
+    [TypeFilter(typeof(ControllerLogger))]
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoriesGetterService _categoriesGetterService;
         private readonly ICategoriesUpdaterService _categoriesUpdaterService;
         private readonly ICategoriesDeleterService _categoriesDeleterService;
         private readonly ICategoriesAdderService _categoriesAdderService;
+
         public CategoriesController(ICategoriesGetterService categoriesGetterService,
             ICategoriesUpdaterService categoriesUpdaterService,
             ICategoriesDeleterService categoriesDeleterService,
