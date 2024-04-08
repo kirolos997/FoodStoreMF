@@ -1,4 +1,4 @@
-﻿using FoodStore.Application.DTO.Products;
+﻿using FoodStore.Core.DTO.Products.v1;
 using FoodStore.Core.Entities;
 using FoodStore.Core.Exceptions.Categories;
 using FoodStore.Core.RepositoriesContracts;
