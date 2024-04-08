@@ -34,6 +34,10 @@ namespace FoodStore.API.Middelware
             {
                 statusCode = (int)HttpStatusCode.NotFound;
             }
+            else if (exception is DuplicateCategoryException)
+            {
+                statusCode = (int)HttpStatusCode.Conflict;
+            }
             else
             {
                 statusCode = (int)HttpStatusCode.InternalServerError;
