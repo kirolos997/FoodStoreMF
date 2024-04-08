@@ -1,4 +1,5 @@
-﻿using FoodStore.Core.DTO.Products.v1;
+﻿using FoodStore.Core.DTO.Pagination;
+using FoodStore.Core.DTO.Products.v1;
 
 namespace FoodStore.Core.ServicesContracts.IProducts.v1
 {
@@ -7,8 +8,9 @@ namespace FoodStore.Core.ServicesContracts.IProducts.v1
         /// <summary>
         /// Returns all products as list
         /// </summary>
+        /// <param name="pagination">Optional pagination object</param>
         /// <returns>Returns a list of objects of ProductResponse type</returns>
-        Task<List<ProductResponse>> GetAllProducts();
+        Task<List<ProductResponse>> GetAllProducts(Pagination pagination);
 
         /// <summary>
         /// Returns the product object based on the given product id

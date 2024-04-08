@@ -1,4 +1,5 @@
-﻿using FoodStore.Core.DTO.Products.v1;
+﻿using FoodStore.Core.DTO.Pagination;
+using FoodStore.Core.DTO.Products.v1;
 using FoodStore.Core.Entities;
 using FoodStore.Core.Exceptions.Categories;
 using FoodStore.Core.RepositoriesContracts;
@@ -16,10 +17,10 @@ namespace FoodStore.Core.Services.Products.v1
             _productsRepository = productsRepository;
         }
 
-        public async Task<List<ProductResponse>> GetAllProducts()
+        public async Task<List<ProductResponse>> GetAllProducts(Pagination pagination)
         {
             // Getting all products from the data store
-            List<Product> products = await _productsRepository.GetAllProducts();
+            List<Product> products = await _productsRepository.GetAllProducts(pagination);
 
             return products.Select(item => item.ToProductResponse()).ToList();
         }
