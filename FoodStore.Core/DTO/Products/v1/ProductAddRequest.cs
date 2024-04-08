@@ -1,4 +1,5 @@
 ﻿using FoodStore.Core.Entities;
+using FoodStore.Core.Helpers;
 using System.ComponentModel.DataAnnotations;
 
 namespace FoodStore.Core.DTO.Products.v1
@@ -13,7 +14,7 @@ namespace FoodStore.Core.DTO.Products.v1
         public string ProductName { get; set; }
 
         [Required(ErrorMessage = "Product price can't be blank")]
-        [RegularExpression(@"^\d+(\.\d{2})?$", ErrorMessage = "Price must be a decimal with up to 2 decimal places.")]
+        [RegularExpression(@"^\d+\.\d{2}$", ErrorMessage = "Price must be a decimal with up to 2 decimal places.")]
         public decimal Price { get; set; }
 
         [Required(ErrorMessage = "Product description can't be blank")]
@@ -24,7 +25,7 @@ namespace FoodStore.Core.DTO.Products.v1
         public Guid? CategoryId { get; set; }
 
         [Required(ErrorMessage = "InStore can't be blank")]
-        [RegularExpression("^(True|False|true|false)$", ErrorMessage = "Invalid boolean value for the InStore")]
+        [BooleanValidator]
         public bool InStore { get; set; }
 
 
