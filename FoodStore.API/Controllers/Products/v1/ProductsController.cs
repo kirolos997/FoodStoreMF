@@ -1,4 +1,4 @@
-﻿using FoodStore.Application.DTO.Products;
+﻿using FoodStore.Core.DTO.Products.v1;
 using FoodStore.Core.ServicesContracts.IProducts.v1;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +9,14 @@ namespace FoodStore.API.Controllers.Products.v1
     public class ProductsController : BaseController
     {
         private readonly IProductsGetterService _productsGetterService;
+        private readonly IProductsUpdaterService _productsUpdaterService;
+        private readonly IProductsDeleterService _productsDeleterService;
 
-        public ProductsController(IProductsGetterService productsGetterService)
+        public ProductsController(IProductsGetterService productsGetterService, IProductsUpdaterService productsUpdaterService, IProductsDeleterService productsDeleterService)
         {
             _productsGetterService = productsGetterService;
+            _productsUpdaterService = productsUpdaterService;
+            _productsDeleterService = productsDeleterService;
         }
         // GET: api/Products
         [HttpGet]
@@ -24,12 +28,30 @@ namespace FoodStore.API.Controllers.Products.v1
         }
 
         // GET api/Products/GUID
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get([FromRoute] Guid id)
+        [HttpGet("{productID}")]
+        public async Task<IActionResult> Get([FromRoute] Guid productID)
         {
-            ProductResponse? respone = await _productsGetterService.GetProductByProductID(id);
+            ProductResponse? respone = await _productsGetterService.GetProductByProductID(productID);
 
             return Ok(respone);
+        }
+
+        // PUT api/Products/GUID
+        [HttpPut("{productID}")]
+        public async Task<IActionResult> Put([FromRoute] Guid productID, [FromBody] ProductUpdateRequest productUpdateRequest)
+        {
+            ProductResponse? respone = await _productsUpdaterService.UpdateProduct(productID, productUpdateRequest);
+
+            return Ok(respone);
+        }
+
+        // DELETE api/Products/GUID
+        [HttpDelete("{productID}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid productID)
+        {
+            _ = await _productsDeleterService.DeleteProduct(productID);
+
+            return NoContent();
         }
 
         // POST api/<ProductsController>
@@ -38,16 +60,6 @@ namespace FoodStore.API.Controllers.Products.v1
         {
         }
 
-        // PUT api/<ProductsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
 
-        // DELETE api/<ProductsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

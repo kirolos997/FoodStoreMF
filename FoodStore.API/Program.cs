@@ -58,6 +58,8 @@ builder.Services.AddScoped<ICategoriesDeleterService, CategoriesDeleterService>(
 builder.Services.AddScoped<ICategoriesAdderService, CategoriesAdderService>();
 
 builder.Services.AddScoped<IProductsGetterService, ProductsGetterService>();
+builder.Services.AddScoped<IProductsDeleterService, ProductsDeleterService>();
+builder.Services.AddScoped<IProductsUpdaterService, ProductsUpdaterService>();
 
 apiVersioningBuilder.AddApiExplorer(options =>
 {
