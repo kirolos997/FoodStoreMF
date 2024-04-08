@@ -32,6 +32,7 @@ builder.Services.AddHttpLogging(options =>
 });
 
 builder.Services.AddTransient<ValidateModelAttributes>();
+builder.Services.AddTransient<ControllerLogger>();
 
 builder.Services.AddScoped<ICategoriesRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoriesGetterService, CategoriesGetterService>();

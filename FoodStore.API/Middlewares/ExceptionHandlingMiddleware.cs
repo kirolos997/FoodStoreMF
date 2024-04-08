@@ -9,10 +9,12 @@ namespace FoodStore.API.Middelware
     public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<ExceptionHandlingMiddleware> _logger;
 
-        public ExceptionHandlingMiddleware(RequestDelegate next)
+        public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
         {
             _next = next;
+            _logger = logger;
         }
 
         public async Task InvokeAsync(HttpContext httpContext)
@@ -28,6 +30,8 @@ namespace FoodStore.API.Middelware
         }
         private Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
+            _logger.LogInformation("Exception occured!!");
+
             int statusCode;
 
             if (exception is InvalidCategoryIDException || exception is ArgumentNullException)
@@ -58,6 +62,8 @@ namespace FoodStore.API.Middelware
             };
 
             string jsonString = JsonConvert.SerializeObject(new { Error = responseObject });
+
+            _logger.LogError(jsonString);
 
             return context.Response.WriteAsync(jsonString);
         }
