@@ -1,10 +1,11 @@
-﻿using FoodStore.Application.DTO.Categories;
+﻿using FoodStore.Core.DTO.Categories.v1;
 using FoodStore.Core.Entities;
 using FoodStore.Core.Exceptions.Categories;
 using FoodStore.Core.RepositoriesContracts;
-using FoodStore.Core.ServicesContracts.ICategories;
+using FoodStore.Core.ServicesContracts.ICategories.v1;
 
-namespace FoodStore.Core.Services.Categories
+
+namespace FoodStore.Core.Services.Categories.v1
 {
     public class CategoriesAdderService : ICategoriesAdderService
     {

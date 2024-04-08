@@ -1,6 +1,6 @@
-﻿using FoodStore.Application.DTO.Categories;
+﻿using FoodStore.Application.DTO.Categories.v2;
 
-namespace FoodStore.Core.ServicesContracts.ICategories
+namespace FoodStore.Core.ServicesContracts.ICategories.v2
 {
     /// <summary>
     /// Represents business logic (retrieve) for manipulating Category entity

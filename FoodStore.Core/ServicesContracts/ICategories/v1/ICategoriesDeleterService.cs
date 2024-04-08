@@ -1,4 +1,4 @@
-﻿namespace FoodStore.Core.ServicesContracts.ICategories
+﻿namespace FoodStore.Core.ServicesContracts.ICategories.v1
 {
     /// <summary>
     /// Represents business logic (delete) for manipulating category entity
