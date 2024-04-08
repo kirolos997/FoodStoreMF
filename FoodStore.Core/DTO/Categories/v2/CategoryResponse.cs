@@ -1,4 +1,4 @@
-﻿using FoodStore.Application.DTO.Products;
+﻿using FoodStore.Core.DTO.Products.v1;
 using FoodStore.Core.Entities;
 
 namespace FoodStore.Application.DTO.Categories.v2
