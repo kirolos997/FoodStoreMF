@@ -1,4 +1,4 @@
-﻿using FoodStore.Application.DTO.Products;
+﻿using FoodStore.Core.DTO.Products.v1;
 
 namespace FoodStore.Core.ServicesContracts.IProducts.v1
 {
