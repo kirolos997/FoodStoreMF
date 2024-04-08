@@ -1,4 +1,5 @@
-﻿using FoodStore.Core.Entities;
+﻿using FoodStore.Core.DTO.Pagination;
+using FoodStore.Core.Entities;
 using FoodStore.Core.RepositoriesContracts;
 using FoodStore.Infrastrucutre.DBContext;
 using Microsoft.EntityFrameworkCore;
@@ -16,10 +17,10 @@ namespace FoodStore.Infrastrucutre.Repositories
             _db = db;
         }
 
-        public async Task<List<Product>> GetAllProducts()
+        public async Task<List<Product>> GetAllProducts(Pagination pagination)
         {
             // Using navigation property
-            return await _db.products.Include("Category").ToListAsync();
+            return await _db.products.Include("Category").Skip(pagination.Offset).Take(pagination.Limit).ToListAsync();
         }
         public async Task<Product?> GetProductByName(string productName)
         {

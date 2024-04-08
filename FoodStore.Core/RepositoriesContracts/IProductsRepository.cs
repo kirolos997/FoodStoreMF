@@ -1,4 +1,5 @@
-﻿using FoodStore.Core.Entities;
+﻿using FoodStore.Core.DTO.Pagination;
+using FoodStore.Core.Entities;
 
 namespace FoodStore.Core.RepositoriesContracts
 {
@@ -11,8 +12,9 @@ namespace FoodStore.Core.RepositoriesContracts
         /// <summary>
         /// Returns all products in the data store
         /// </summary>
+        /// <param name="pagination">Optional pagination object</param>
         /// <returns>List of product objects from table</returns>
-        Task<List<Product>> GetAllProducts();
+        Task<List<Product>> GetAllProducts(Pagination pagination);
 
 
         /// <summary>
