@@ -3,7 +3,9 @@ using FoodStore.API.Filters;
 using FoodStore.API.Middelware;
 using FoodStore.Core.RepositoriesContracts;
 using FoodStore.Core.Services.Categories.v1;
+using FoodStore.Core.Services.Products.v1;
 using FoodStore.Core.ServicesContracts.ICategories.v1;
+using FoodStore.Core.ServicesContracts.IProducts.v1;
 using FoodStore.Infrastrucutre.DBContext;
 using FoodStore.Infrastrucutre.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -47,12 +49,15 @@ builder.Services.AddTransient<ControllerLogger>();
 builder.Services.AddTransient<ActionLogger>();
 
 builder.Services.AddScoped<ICategoriesRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
+
 builder.Services.AddScoped<ICategoriesGetterService, CategoriesGetterService>();
 builder.Services.AddScoped<FoodStore.Core.ServicesContracts.ICategories.v2.ICategoriesGetterService, FoodStore.Core.Services.Categories.v2.CategoriesGetterService>();
 builder.Services.AddScoped<ICategoriesUpdaterService, CategoriesUpdaterService>();
 builder.Services.AddScoped<ICategoriesDeleterService, CategoriesDeleterService>();
 builder.Services.AddScoped<ICategoriesAdderService, CategoriesAdderService>();
 
+builder.Services.AddScoped<IProductsGetterService, ProductsGetterService>();
 
 apiVersioningBuilder.AddApiExplorer(options =>
 {
