@@ -1,7 +1,7 @@
 ﻿using FoodStore.Core.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace FoodStore.Application.DTO.Categories
+namespace FoodStore.Core.DTO.Categories.v1
 {
     /// <summary>
     /// DTO for updating a category request object
