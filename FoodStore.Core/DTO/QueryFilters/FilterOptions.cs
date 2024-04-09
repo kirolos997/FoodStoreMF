@@ -1,12 +1,11 @@
-﻿using FoodStore.Core.DTO.Products.v1;
-using FoodStore.Core.Helpers;
+﻿using FoodStore.Core.Helpers;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
 namespace FoodStore.Core.DTO.QueryFilters
 {
 
-    public class FilterOptions : IValidatableObject
+    public class FilterOptions<T> : IValidatableObject
     {
         public string[]? Search { get; set; }
 
@@ -73,7 +72,7 @@ namespace FoodStore.Core.DTO.QueryFilters
 
             if (!queryTerms.Any()) yield break;
 
-            var declaredTerms = typeof(ProductResponse)
+            var declaredTerms = typeof(T)
                 .GetTypeInfo()
                 .DeclaredProperties
                 .Where(p => p.GetCustomAttributes<SearchableAttribute>().Any())
