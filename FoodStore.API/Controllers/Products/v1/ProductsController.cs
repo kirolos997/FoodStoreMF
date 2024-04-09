@@ -28,7 +28,7 @@ namespace FoodStore.API.Controllers.Products.v1
         }
         // GET: api/Products
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] Pagination pagination, [FromQuery] FilterOptions? searchOptions)
+        public async Task<IActionResult> Get([FromQuery] Pagination pagination, [FromQuery] FilterOptions<ProductResponse>? searchOptions)
         {
             List<ProductResponse>? respone = await _productsGetterService.GetAllProducts(pagination, searchOptions);
 
