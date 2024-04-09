@@ -1,5 +1,6 @@
 ﻿using FoodStore.Core.DTO.Pagination;
 using FoodStore.Core.Entities;
+using System.Linq.Expressions;
 
 namespace FoodStore.Core.RepositoriesContracts
 {
@@ -13,8 +14,9 @@ namespace FoodStore.Core.RepositoriesContracts
         /// Returns all products in the data store
         /// </summary>
         /// <param name="pagination">Optional pagination object</param>
+        /// <param name="searchOptions">Optional deligate searchOptions object to apply filtering</param>
         /// <returns>List of product objects from table</returns>
-        Task<List<Product>> GetAllProducts(Pagination pagination);
+        Task<List<Product>> GetAllProducts(Pagination pagination, Expression<Func<Product, bool>>? searchOptions);
 
 
         /// <summary>

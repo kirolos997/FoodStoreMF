@@ -3,6 +3,7 @@ using FoodStore.Core.Entities;
 using FoodStore.Core.RepositoriesContracts;
 using FoodStore.Infrastrucutre.DBContext;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace FoodStore.Infrastrucutre.Repositories
@@ -17,11 +18,17 @@ namespace FoodStore.Infrastrucutre.Repositories
             _db = db;
         }
 
-        public async Task<List<Product>> GetAllProducts(Pagination pagination)
+        public async Task<List<Product>> GetAllProducts(Pagination pagination, Expression<Func<Product, bool>>? searchOptions)
         {
-            // Using navigation property
-            return await _db.products.Include("Category").Skip(pagination.Offset).Take(pagination.Limit).ToListAsync();
+            if (searchOptions is null)
+            {
+                return await _db.products.Include("Category").Skip(pagination.Offset).Take(pagination.Limit).ToListAsync();
+
+            }
+            return await _db.products.Include("Category").Where(searchOptions).Skip(pagination.Offset).Take(pagination.Limit).ToListAsync();
+
         }
+
         public async Task<Product?> GetProductByName(string productName)
         {
             string modifiedProductName = productName.ToLower().Trim().Replace(" ", "");
@@ -35,6 +42,7 @@ namespace FoodStore.Infrastrucutre.Repositories
             // Using navigation property
             return await _db.products.Include("Category").FirstOrDefaultAsync(item => item.ProductId == productID);
         }
+
 
         public async Task<bool> DeleteProductByID(Guid productID)
         {
@@ -78,5 +86,6 @@ namespace FoodStore.Infrastrucutre.Repositories
 
             return product;
         }
+
     }
 }
