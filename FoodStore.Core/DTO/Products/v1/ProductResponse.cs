@@ -1,4 +1,5 @@
 ﻿using FoodStore.Core.Entities;
+using FoodStore.Core.Helpers;
 
 namespace FoodStore.Core.DTO.Products.v1
 {
@@ -6,15 +7,15 @@ namespace FoodStore.Core.DTO.Products.v1
     {
         public Guid ProductId { get; set; }
 
+        [Searchable]
         public string ProductName { get; set; }
-
+        [Searchable]
         public decimal Price { get; set; }
-
+        [Searchable]
+        public bool InStore { get; set; }
         public string? ProductDescription { get; set; }
-
         public Guid? CategoryId { get; set; }
 
-        public bool InStore { get; set; }
     }
 
     public static class ProductExtension
