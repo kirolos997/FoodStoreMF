@@ -1,4 +1,5 @@
-﻿using FoodStore.Core.Entities;
+﻿using FoodStore.Core.DTO.Pagination;
+using FoodStore.Core.Entities;
 
 namespace FoodStore.Core.RepositoriesContracts
 {
@@ -10,8 +11,9 @@ namespace FoodStore.Core.RepositoriesContracts
         /// <summary>
         /// Returns all categories in the data store
         /// </summary>
+        /// <param name="pagination">Optional pagination object</param>
         /// <returns>All categories from the table</returns>
-        Task<List<Category>> GetAllCategories();
+        Task<List<Category>> GetAllCategories(Pagination pagination);
 
         /// <summary>
         /// Returns a category object based on the given id; otherwise, it returns null

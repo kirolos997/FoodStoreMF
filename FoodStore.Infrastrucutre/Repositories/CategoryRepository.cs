@@ -1,4 +1,5 @@
-﻿using FoodStore.Core.Entities;
+﻿using FoodStore.Core.DTO.Pagination;
+using FoodStore.Core.Entities;
 using FoodStore.Core.RepositoriesContracts;
 using FoodStore.Infrastrucutre.DBContext;
 using Microsoft.EntityFrameworkCore;
@@ -15,9 +16,9 @@ namespace FoodStore.Infrastrucutre.Repositories
             _db = db;
         }
 
-        public async Task<List<Category>> GetAllCategories()
+        public async Task<List<Category>> GetAllCategories(Pagination pagination)
         {
-            return await _db.categories.Include("products").ToListAsync();
+            return await _db.categories.Include("products").Skip(pagination.Offset).Take(pagination.Limit).ToListAsync();
         }
 
         public async Task<Category?> GetCategoryByID(Guid ID)
