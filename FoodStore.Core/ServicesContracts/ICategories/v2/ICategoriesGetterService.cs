@@ -1,4 +1,5 @@
 ﻿using FoodStore.Application.DTO.Categories.v2;
+using FoodStore.Core.DTO.Pagination;
 
 namespace FoodStore.Core.ServicesContracts.ICategories.v2
 {
@@ -10,8 +11,9 @@ namespace FoodStore.Core.ServicesContracts.ICategories.v2
         /// <summary>
         /// Returns all categories from the table
         /// </summary>
+        /// <param name="pagination">Optional pagination object</param>
         /// <returns>All categories from the table as List of CategoryResponse</returns>
-        Task<List<CategoryResponse>> GetAllCategories();
+        Task<List<CategoryResponse>> GetAllCategories(Pagination pagination);
 
 
         /// <summary>

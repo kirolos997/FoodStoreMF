@@ -1,4 +1,5 @@
 ﻿using FoodStore.Core.DTO.Categories.v1;
+using FoodStore.Core.DTO.Pagination;
 using FoodStore.Core.Entities;
 using FoodStore.Core.Exceptions.Categories;
 using FoodStore.Core.RepositoriesContracts;
@@ -14,10 +15,10 @@ namespace FoodStore.Core.Services.Categories.v1
             // Using dependency injection to reach the needed repositroy
             _categoriesRepository = categoriesRepository;
         }
-        public async Task<List<CategoryResponse>> GetAllCategories()
+        public async Task<List<CategoryResponse>> GetAllCategories(Pagination pagination)
         {
             // Getting all categories from the data store
-            List<Category> categories = await _categoriesRepository.GetAllCategories();
+            List<Category> categories = await _categoriesRepository.GetAllCategories(pagination);
 
             // Converting each Category to CategoryResponse using LINQ
             return categories.Select(item => item.ToCategoryResponse()).ToList();
