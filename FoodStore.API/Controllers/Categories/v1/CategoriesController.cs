@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using FoodStore.Core.DTO.Categories.v1;
+using FoodStore.Core.DTO.Pagination;
 using FoodStore.Core.ServicesContracts.ICategories.v1;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,9 +31,9 @@ namespace FoodStore.API.Controllers.Categories.v1
 
         // GET: api/Categories/
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] Pagination pagination)
         {
-            List<CategoryResponse>? respone = await _categoriesGetterService.GetAllCategories();
+            List<CategoryResponse>? respone = await _categoriesGetterService.GetAllCategories(pagination);
 
             return Ok(respone);
         }
