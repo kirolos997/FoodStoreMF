@@ -1,5 +1,6 @@
 ﻿using FoodStore.Core.DTO.Products.v1;
 using FoodStore.Core.Entities;
+using FoodStore.Core.Helpers;
 
 namespace FoodStore.Application.DTO.Categories.v2
 {
@@ -10,7 +11,8 @@ namespace FoodStore.Application.DTO.Categories.v2
     {
         public Guid CategoryID { get; set; }
 
-        public string? CategoryName { get; set; }
+        [Searchable]
+        public string? Name { get; set; }
 
         public List<ProductResponse>? Products { get; set; }
 
@@ -21,7 +23,7 @@ namespace FoodStore.Application.DTO.Categories.v2
         /// <returns></returns>
         public Category ToCategory()
         {
-            return new Category() { Name = CategoryName };
+            return new Category() { Name = Name };
         }
     }
     public static class CategoryExtensions
@@ -36,7 +38,7 @@ namespace FoodStore.Application.DTO.Categories.v2
             return new CategoryResponse()
             {
                 CategoryID = category.CategoryId,
-                CategoryName = category.Name,
+                Name = category.Name,
                 Products = category.products?.Select(p => p.ToProductResponse()).ToList()
 
             };
