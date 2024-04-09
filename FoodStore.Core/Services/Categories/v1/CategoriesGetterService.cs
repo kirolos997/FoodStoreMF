@@ -18,7 +18,7 @@ namespace FoodStore.Core.Services.Categories.v1
         public async Task<List<CategoryResponse>> GetAllCategories(Pagination pagination)
         {
             // Getting all categories from the data store
-            List<Category> categories = await _categoriesRepository.GetAllCategories(pagination);
+            List<Category> categories = await _categoriesRepository.GetAllCategories(pagination, null); ;
 
             // Converting each Category to CategoryResponse using LINQ
             return categories.Select(item => item.ToCategoryResponse()).ToList();

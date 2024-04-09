@@ -1,9 +1,12 @@
 ﻿using FoodStore.Application.DTO.Categories.v2;
 using FoodStore.Core.DTO.Pagination;
+using FoodStore.Core.DTO.QueryFilters;
 using FoodStore.Core.Entities;
 using FoodStore.Core.Exceptions.Categories;
+using FoodStore.Core.Helpers;
 using FoodStore.Core.RepositoriesContracts;
 using FoodStore.Core.ServicesContracts.ICategories.v2;
+using System.Linq.Expressions;
 
 namespace FoodStore.Core.Services.Categories.v2
 {
@@ -15,10 +18,20 @@ namespace FoodStore.Core.Services.Categories.v2
             // Using dependency injection to reach the needed repositroy
             _categoriesRepository = categoriesRepository;
         }
-        public async Task<List<CategoryResponse>> GetAllCategories(Pagination pagination)
+        public async Task<List<CategoryResponse>> GetAllCategories(Pagination pagination, FilterOptions<CategoryResponse>? searchOptions)
         {
             // Getting all categories from the data store
-            List<Category> categories = await _categoriesRepository.GetAllCategories(pagination);
+            List<FilterTerm>? validSearchTerms = null;
+
+            Expression<Func<Category, bool>>? searchExpression = null;
+
+            if (searchOptions is not null)
+            {
+                validSearchTerms = searchOptions.GetValidTerms().ToList();
+
+                searchExpression = LINQExpressionsBuilder.GetAndFilterExpression<Category>(validSearchTerms);
+            }
+            List<Category> categories = await _categoriesRepository.GetAllCategories(pagination, searchExpression);
 
             // Converting each Category to CategoryResponse using LINQ
             return categories.Select(item => item.ToCategoryResponse()).ToList();
