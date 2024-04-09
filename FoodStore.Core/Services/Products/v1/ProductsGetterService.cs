@@ -20,7 +20,7 @@ namespace FoodStore.Core.Services.Products.v1
             _productsRepository = productsRepository;
         }
 
-        public async Task<List<ProductResponse>> GetAllProducts(Pagination pagination, FilterOptions? searchOptions)
+        public async Task<List<ProductResponse>> GetAllProducts(Pagination pagination, FilterOptions<ProductResponse>? searchOptions)
         {
             // Getting all products from the data store
             List<FilterTerm>? validSearchTerms = null;
