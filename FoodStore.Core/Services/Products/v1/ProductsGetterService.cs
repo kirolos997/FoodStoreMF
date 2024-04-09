@@ -1,9 +1,12 @@
 ﻿using FoodStore.Core.DTO.Pagination;
 using FoodStore.Core.DTO.Products.v1;
+using FoodStore.Core.DTO.QueryFilters;
 using FoodStore.Core.Entities;
 using FoodStore.Core.Exceptions.Categories;
+using FoodStore.Core.Helpers;
 using FoodStore.Core.RepositoriesContracts;
 using FoodStore.Core.ServicesContracts.IProducts.v1;
+using System.Linq.Expressions;
 
 namespace FoodStore.Core.Services.Products.v1
 {
@@ -17,10 +20,20 @@ namespace FoodStore.Core.Services.Products.v1
             _productsRepository = productsRepository;
         }
 
-        public async Task<List<ProductResponse>> GetAllProducts(Pagination pagination)
+        public async Task<List<ProductResponse>> GetAllProducts(Pagination pagination, FilterOptions? searchOptions)
         {
             // Getting all products from the data store
-            List<Product> products = await _productsRepository.GetAllProducts(pagination);
+            List<FilterTerm>? validSearchTerms = null;
+
+            Expression<Func<Product, bool>>? searchExpression = null;
+
+            if (searchOptions is not null)
+            {
+                validSearchTerms = searchOptions.GetValidTerms().ToList();
+
+                searchExpression = LINQExpressionsBuilder.GetAndFilterExpression<Product>(validSearchTerms);
+            }
+            List<Product> products = await _productsRepository.GetAllProducts(pagination, searchExpression);
 
             return products.Select(item => item.ToProductResponse()).ToList();
         }
@@ -38,5 +51,6 @@ namespace FoodStore.Core.Services.Products.v1
             // Performing the deletion operation using the given ID
             return product.ToProductResponse();
         }
+
     }
 }
