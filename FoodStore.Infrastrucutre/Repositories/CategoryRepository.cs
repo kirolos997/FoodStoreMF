@@ -3,6 +3,7 @@ using FoodStore.Core.Entities;
 using FoodStore.Core.RepositoriesContracts;
 using FoodStore.Infrastrucutre.DBContext;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace FoodStore.Infrastrucutre.Repositories
 {
@@ -16,9 +17,15 @@ namespace FoodStore.Infrastrucutre.Repositories
             _db = db;
         }
 
-        public async Task<List<Category>> GetAllCategories(Pagination pagination)
+        public async Task<List<Category>> GetAllCategories(Pagination pagination, Expression<Func<Category, bool>>? searchOptions)
         {
-            return await _db.categories.Include("products").Skip(pagination.Offset).Take(pagination.Limit).ToListAsync();
+            if (searchOptions is null)
+            {
+                return await _db.categories.Include("products").Skip(pagination.Offset).Take(pagination.Limit).ToListAsync();
+
+            }
+            return await _db.categories.Include("products").Where(searchOptions).Skip(pagination.Offset).Take(pagination.Limit).ToListAsync();
+
         }
 
         public async Task<Category?> GetCategoryByID(Guid ID)
