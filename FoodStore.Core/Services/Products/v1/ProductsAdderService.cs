@@ -20,6 +20,10 @@ namespace FoodStore.Core.Services.Products
         }
         public async Task<ProductResponse> AddProduct(ProductAddRequest productAddRequest)
         {
+            if (productAddRequest is null)
+            {
+                throw new ArgumentNullException(nameof(productAddRequest));
+            }
             // Converting productAddRequest to product
             Product product = productAddRequest.ToProduct();
 
@@ -27,9 +31,9 @@ namespace FoodStore.Core.Services.Products
             product.ProductId = Guid.NewGuid();
 
             // Making sure no product with the same name exists before
-            Product? createdCategory = await _productsRepository.GetProductByName(product.ProductName);
+            Product? createdProduct = await _productsRepository.GetProductByName(product.ProductName);
 
-            if (createdCategory != null) throw new DuplicateProductException("Given product name exists before!");
+            if (createdProduct != null) throw new DuplicateProductException("Given product name exists before!");
 
             // Making sure the passed CategoryID exists before creating the record. 
             _ = await _categoriesGetterService.GetCategoryByCategoryID(product.CategoryId);
