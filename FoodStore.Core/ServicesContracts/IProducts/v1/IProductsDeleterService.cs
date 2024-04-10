@@ -5,7 +5,7 @@
     /// </summary>
     public interface IProductsDeleterService
     {    /// <summary>
-         /// Deletes a product based on the given person id
+         /// Deletes a product based on the given product id
          /// </summary>
          /// <param name="productID">Product ID to be deleted</param>
          /// <returns>Returns true, if the deletion is successful; otherwise false</returns>

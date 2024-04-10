@@ -6,7 +6,7 @@
     public interface ICategoriesDeleterService
     {
         /// <summary>
-        /// Deletes a category based on the given person id
+        /// Deletes a category based on the given category id
         /// </summary>
         /// <param name="categoryID">Category ID to be deleted</param>
         /// <returns>Returns true, if the deletion is successful; otherwise false</returns>
