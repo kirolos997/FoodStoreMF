@@ -4,7 +4,9 @@ using FoodStore.Core.ServicesContracts.IProducts.v1;
 
 namespace FoodStore.Core.Services.Products.v1
 {
-
+    /// <summary>
+    ///  Product service layer (Deleter) where business logic lives and it calls the repository layer
+    /// </summary>
     public class ProductsDeleterService : IProductsDeleterService
     {
         private readonly IProductsRepository _productsRepository;

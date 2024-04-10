@@ -7,6 +7,9 @@ using System.Linq.Expressions;
 
 namespace FoodStore.Infrastrucutre.Repositories
 {
+    /// <summary>
+    /// Following repository pattern to create a layer for accessing the database
+    /// </summary>
     public class CategoryRepository : ICategoriesRepository
     {
         private readonly FoodStoreDbContext _db;
@@ -21,6 +24,7 @@ namespace FoodStore.Infrastrucutre.Repositories
         {
             if (searchOptions is null)
             {
+                // No filter is applied 
                 return await _db.categories.Include("products").Skip(pagination.Offset).Take(pagination.Limit).ToListAsync();
 
             }

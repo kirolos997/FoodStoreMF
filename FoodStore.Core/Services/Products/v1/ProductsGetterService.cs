@@ -10,6 +10,9 @@ using System.Linq.Expressions;
 
 namespace FoodStore.Core.Services.Products.v1
 {
+    /// <summary>
+    ///  Product service layer (Getter) where business logic lives and it calls the repository layer
+    /// </summary>
     public class ProductsGetterService : IProductsGetterService
     {
         private readonly IProductsRepository _productsRepository;

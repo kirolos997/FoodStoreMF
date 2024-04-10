@@ -6,6 +6,9 @@ using FoodStore.Core.ServicesContracts.ICategories.v1;
 
 namespace FoodStore.Core.Services.Categories.v1
 {
+    /// <summary>
+    ///  Category service layer (Updater) where business logic lives and it calls the repository layer
+    /// </summary>
     public class CategoriesUpdaterService : ICategoriesUpdaterService
     {
         private readonly ICategoriesRepository _categoriesRepository;
