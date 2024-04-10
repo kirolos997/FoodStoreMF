@@ -69,12 +69,14 @@ Make sure to select **HTTP profile** before running the application on port **50
 #### Get all Products
 
 ```http
-  GET /api/v1/products
+  GET /api/v1/products{?offset}&{?limit}{?search}
 ```
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
+| `?offset` | `int`    | **Optional** Number of items to skip|
+| `?limit` | `int`     | **Optional** Number of items to take|
+| `?search` | `string` | **Optional** multiple or one filter(s) written in the following format ['ColumName' 'Operator[eq, neq, lt, gt 'Value' ]|
 
 #### Get item
 
