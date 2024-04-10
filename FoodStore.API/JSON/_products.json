@@ -1,0 +1,148 @@
+[
+  {
+    "ProductId": "c03bbe45-9aeb-4d24-99e0-4743016ffce9",
+    "ProductName": "Green Cola",
+    "Price": 20.00,
+    "ProductDescription": "Sparkling water with lemon flavor",
+    "CategoryId": "56bf46a4-02b8-4693-a0f5-0a95e2218bdc",
+    "InStore":  true
+  },
+  {
+    "ProductId": "c3abddbd-cf50-41d2-b6c4-cc7d5a750928",
+    "ProductName": "SpiroSpatis",
+    "Price": 15.00,
+    "ProductDescription": "Sparkling water with orange flavor",
+    "CategoryId": "56bf46a4-02b8-4693-a0f5-0a95e2218bdc",
+    "InStore": true
+
+  },
+  {
+    "ProductId": "c6d50a47-f7e6-4482-8be0-4ddfc057fa6e",
+    "ProductName": "Mineral water",
+    "Price": 5.00,
+    "ProductDescription": "Mineral water with low sodium",
+    "CategoryId": "56bf46a4-02b8-4693-a0f5-0a95e2218bdc",
+    "InStore": true
+
+  },
+  {
+    "ProductId": "d15c6d9f-70b4-48c5-afd3-e71261f1a9be",
+    "ProductName": "White bread",
+    "Price": 2.00,
+    "ProductDescription": "White bread with made from wheat flour",
+    "CategoryId": "14629847-905a-4a0e-9abe-80b61655c5cb",
+    "InStore": true
+
+  },
+  {
+    "ProductId": "89e5f445-d89f-4e12-94e0-5ad5b235d704",
+    "ProductName": "Diet bread",
+    "Price": 3.00,
+    "ProductDescription": "White bread with made from whole grains, seeds, and fiber-rich flour",
+    "CategoryId": "14629847-905a-4a0e-9abe-80b61655c5cb",
+    "InStore": true
+
+  },
+  {
+    "ProductId": "2a6d3738-9def-43ac-9279-0310edc7ceca",
+    "ProductName": "Shrimps",
+    "Price": 250.00,
+    "ProductDescription": "Shrimps from red sea",
+    "CategoryId": "12e15727-d369-49a9-8b13-bc22e9362179",
+    "InStore": true
+
+  },
+  {
+    "ProductId": "29339209-63f5-492f-8459-754943c74abf",
+    "ProductName": "Sardines",
+    "Price": 90.00,
+    "ProductDescription": "Sardines from red sea",
+    "CategoryId": "12e15727-d369-49a9-8b13-bc22e9362179",
+    "InStore": true
+
+  },
+  {
+    "ProductId": "ac660a73-b0b7-4340-abc1-a914257a6189",
+    "ProductName": "Nile tilapia",
+    "Price": 60.00,
+    "ProductDescription": "Nile tilapia from nile river",
+    "CategoryId": "12e15727-d369-49a9-8b13-bc22e9362179",
+    "InStore": true
+
+  },
+  {
+    "ProductId": "DF660a73-C0b7-4340-abc1-a914257a5674",
+    "ProductName": "Cheddar cheese",
+    "Price": 350.00,
+    "ProductDescription": "Cheddar cheese with olives from Holland",
+    "CategoryId": "8f30bedc-47dd-4286-8950-73d8a68e5d41",
+    "InStore": true
+
+  },
+  {
+    "ProductId": "cb035f22-e7cf-4907-bd07-91cfee5240f3",
+    "ProductName": "Feta cheese",
+    "Price": 120.00,
+    "ProductDescription": "Low salt Feta cheese from Domty",
+    "CategoryId": "8f30bedc-47dd-4286-8950-73d8a68e5d41",
+    "InStore": true
+
+  },
+  {
+    "ProductId": "28d11936-9466-4a4b-b9c5-2f0a8e0cbde9",
+    "ProductName": "Turkey",
+    "Price": 160.00,
+    "ProductDescription": "Rich smoked turkey breast",
+    "CategoryId": "8f30bedc-47dd-4286-8950-73d8a68e5d41",
+    "InStore": true
+
+  },
+  {
+    "ProductId": "a3b9833b-8a4d-43e9-8690-61e08df81a9a",
+    "ProductName": "Pastirma",
+    "Price": 130.00,
+    "ProductDescription": "Halwani Pastirma",
+    "CategoryId": "8f30bedc-47dd-4286-8950-73d8a68e5d41",
+    "InStore": true
+
+  },
+  {
+    "ProductId": "1734EA16-2AE6-4C6A-A46E-641C6B9A8A62",
+    "ProductName": "Molto",
+    "Price": 10.00,
+    "ProductDescription": "Chocolate Molto from edita",
+    "CategoryId": "501c6d33-1bbe-45f1-8fbd-2275913c6218",
+    "InStore": true
+
+
+  },
+  {
+    "ProductId": "3EAE53B3-1472-4465-B361-6703924FA6C6",
+    "ProductName": "Popcorn",
+    "Price": 5.00,
+    "ProductDescription": "Abu Auf popcorn salted and caramel 100g",
+    "CategoryId": "501c6d33-1bbe-45f1-8fbd-2275913c6218",
+    "InStore": true
+
+
+  },
+  {
+    "ProductId": "7BE9243C-19AC-4B4C-8319-9211F99D4216",
+    "ProductName": "Bake Rolz",
+    "Price": 10.25,
+    "ProductDescription": "Bake Rolz ketchup family size 90g",
+    "CategoryId": "501c6d33-1bbe-45f1-8fbd-2275913c6218",
+    "InStore": true
+
+
+  },
+  {
+    "ProductId": "0B81647D-DB2D-4D38-BAC8-3CDBE38B8210",
+    "ProductName": "Falminco",
+    "Price": 5.00,
+    "ProductDescription": "Flaminco smoked cheese puffs 40g",
+    "CategoryId": "501c6d33-1bbe-45f1-8fbd-2275913c6218",
+    "InStore": true
+
+  }
+]
