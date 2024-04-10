@@ -64,7 +64,7 @@ Apply database migrations
   PM> Update-Database SetNullDeleteBehavior
 ```
 Make sure to select **HTTP profile** before running the application on port **5089**.
-## API Reference
+## API Reference for products entity
 
 #### Get all Products
 
@@ -76,19 +76,139 @@ Make sure to select **HTTP profile** before running the application on port **50
 | :-------- | :------- | :------------------------- |
 | `?offset` | `int`    | **Optional** Number of items to skip|
 | `?limit` | `int`     | **Optional** Number of items to take|
-| `?search` | `string` | **Optional** multiple or one filter(s) written in the following format ['ColumName' 'Operator[eq, neq, lt, gt 'Value' ]|
+| `?search` | `string` | **Optional** multiple or one filter(s) anded together written in the following format ['ColumName' 'Operator[eq, neq, lt, gt 'Value' ]. Example: ?search=productName eq P1& search=price neq 10 |
 
-#### Get item
+#### Get Product
 
 ```http
-  GET /api/items/${id}
+  GET /api/v1/products/${id}
 ```
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
+| `id`      | `Guid` | **Required**. Id of product to fetch |
 
-#### add(num1, num2)
+#### Delete Product
 
-Takes two numbers and returns the sum.
+```http
+  DELETE /api/v1/products${id}
+```
 
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `Guid` | **Required**. Id of product to delete |
+
+#### Update Product
+
+```http
+  PUT /api/v1/products${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `Guid` | **Required**. Id of product to update |
+
+| JSON Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `InStore`      | `Bool`  | **Required**. Product exists inside store or no |
+| `Price`      | `decimal(2 digits after dot)`  | **Required**. Product price |
+| `ProductName`      | `string`  | **Required**. Product name |
+| `ProductDescription`      | `string`  | **Required**. Product description|
+| `CategoryId`      | `Guid`  | **Required**. Category ID for the product and must be a valid category|
+
+#### Create Product
+
+```http
+  POST /api/v1/products
+```
+
+| JSON Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `InStore`      | `Bool`  | **Required**. Product exists inside store or no |
+| `Price`      | `decimal(2 digits after dot)`  | **Required**. Product price |
+| `ProductName`      | `string`  | **Required**. Product name and must be not **duplicated** before |
+| `ProductDescription`      | `string`  | **Required**. Product description|
+| `CategoryId`      | `Guid`  | **Required**. Category ID for the product and must be a valid category|
+
+
+## API Reference for Categories entity
+
+#### Get all Categories without linked products and no filter (v1)
+
+```http
+  GET /api/v1/Categories{?offset}&{?limit}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `?offset` | `int`    | **Optional** Number of items to skip|
+| `?limit` | `int`     | **Optional** Number of items to take|
+
+#### Get all Categories with linked products and filter (v2)
+
+```http
+  GET /api/v2/Categories{?offset}&{?limit}{?search}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `?offset` | `int`    | **Optional** Number of items to skip|
+| `?limit` | `int`     | **Optional** Number of items to take|
+| `?search` | `string` | **Optional** filtewritten in the following format [ name 'Operator[eq, neq, lt, gt 'Value' ]. Example: ?search=**name** eq P1 |
+
+#### Get Category without linked products(v1)
+
+```http
+  GET /api/v1/Categories/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `Guid` | **Required**. Id of category to fetch |
+
+
+#### Get Category with linked products(v2)
+
+```http
+  GET /api/v2/Categories/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `Guid` | **Required**. Id of category to fetch |
+
+
+
+#### Delete Category
+
+```http
+  DELETE /api/v1/Categories${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `Guid` | **Required**. Id of category to delete. **Note** if category is deleted the products linked won't be deleted |
+
+#### Update Category
+
+```http
+  PUT /api/v1/Categories${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `Guid` | **Required**. Id of category to update |
+
+| JSON Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `CategoryName`   | `string`  | **Required**. Category name|
+
+#### Create Category
+
+```http
+  POST /api/v1/Categories
+```
+
+| JSON Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `CategoryName`   | `string`  | **Required**. Category name and must not be **duplicated** before|
