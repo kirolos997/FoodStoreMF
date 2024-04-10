@@ -26,6 +26,12 @@ namespace FoodStore.Core.Services.Products.v1
                 throw new ArgumentNullException(nameof(productID));
             }
 
+            if (productUpdateRequest is null)
+            {
+
+                throw new ArgumentNullException(nameof(productID));
+            }
+
             // Converting ProductUpdateRequest to product object
             Product product = productUpdateRequest.ToProduct();
 
