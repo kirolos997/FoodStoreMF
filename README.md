@@ -212,3 +212,20 @@ Make sure to select **HTTP profile** before running the application on port **50
 | JSON Body | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `CategoryName`   | `string`  | **Required**. Category name and must not be **duplicated** before|
+
+## Running Unit Tests
+
+To run service unit tests for the products entity developped using XUnit
+
+```bash
+  cd /FoodStoreMF/FoodStore.ServiceTests
+```
+
+
+## Running Integration Tests
+
+To run service integration test for the products controller developped using XUnit
+
+```bash
+  cd /FoodStoreMF/FoodStore.IntegrationTests
+```
