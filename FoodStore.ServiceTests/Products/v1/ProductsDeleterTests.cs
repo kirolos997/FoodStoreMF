@@ -8,7 +8,7 @@ using Moq;
 
 namespace FoodStore.ServiceTests.Products.v1
 {
-    public class ProductsDeleter
+    public class ProductsDeleterTests
     {
         private readonly IProductsDeleterService _productsDeleterService;
 
@@ -16,7 +16,7 @@ namespace FoodStore.ServiceTests.Products.v1
 
         private readonly IProductsRepository _productsRepository;
 
-        public ProductsDeleter()
+        public ProductsDeleterTests()
         {
             // Mocking what the ProductDeleterService depends on
             _productsRepositoryMockFactory = new Mock<IProductsRepository>();

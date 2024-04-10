@@ -12,14 +12,14 @@ using System.Linq.Expressions;
 
 namespace FoodStore.ServiceTests.Products.v1
 {
-    public class ProductGetterTest
+    public class ProductGetterTests
     {
 
         private readonly Mock<IProductsRepository> _productsRepositoryMockFactory;
         private readonly IProductsRepository _productsRepository;
 
         private readonly IProductsGetterService _productsGetterService;
-        public ProductGetterTest()
+        public ProductGetterTests()
         {
             // Mocking what the ProductGetterService depends on
             _productsRepositoryMockFactory = new Mock<IProductsRepository>();
