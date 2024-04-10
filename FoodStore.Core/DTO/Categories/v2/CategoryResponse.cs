@@ -2,7 +2,7 @@
 using FoodStore.Core.Entities;
 using FoodStore.Core.Helpers;
 
-namespace FoodStore.Application.DTO.Categories.v2
+namespace FoodStore.Core.DTO.Categories.v2
 {
     /// <summary>
     /// DTO for getting a category response object

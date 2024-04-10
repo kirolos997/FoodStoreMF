@@ -1,5 +1,5 @@
 ﻿using Asp.Versioning;
-using FoodStore.Application.DTO.Categories.v2;
+using FoodStore.Core.DTO.Categories.v2;
 using FoodStore.Core.DTO.Pagination;
 using FoodStore.Core.DTO.QueryFilters;
 using FoodStore.Core.ServicesContracts.ICategories.v2;
