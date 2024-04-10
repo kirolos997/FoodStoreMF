@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 using System.Net;
+using System.Text;
 
 namespace FoodStore.API.Filters
 {
@@ -40,6 +41,24 @@ namespace FoodStore.API.Filters
 
             }
 
+            // logging querry parameters 
+            var httpContext = context.HttpContext;
+            var queryParams = httpContext.Request.Query;
+            StringBuilder valueString = new StringBuilder();
+
+            foreach (var keyValuePair in queryParams)
+            {
+                if (keyValuePair.Value.Count > 1)
+                {
+                    valueString.Append(string.Join(",", keyValuePair.Value));
+                }
+                else
+                {
+                    valueString.Append(keyValuePair.Value.FirstOrDefault());
+                }
+
+            }
+            _logger.LogDebug($"Querry Values: {valueString.ToString()}");
 
         }
 
