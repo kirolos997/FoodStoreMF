@@ -7,6 +7,9 @@ using FoodStore.Core.ServicesContracts.ICategories.v1;
 
 namespace FoodStore.Core.Services.Categories.v1
 {
+    /// <summary>
+    ///  Category service layer (Adder) where business logic lives and it calls the repository layer
+    /// </summary>
     public class CategoriesAdderService : ICategoriesAdderService
     {
         private readonly ICategoriesRepository _categoriesRepository;

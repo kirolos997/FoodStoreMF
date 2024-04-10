@@ -7,6 +7,9 @@ using FoodStore.Core.ServicesContracts.IProducts.v1;
 
 namespace FoodStore.Core.Services.Products.v1
 {
+    /// <summary>
+    ///  Product service layer (Updater) where business logic lives and it calls the repository layer
+    /// </summary>
     public class ProductsUpdaterService : IProductsUpdaterService
     {
         private readonly IProductsRepository _productRepository;

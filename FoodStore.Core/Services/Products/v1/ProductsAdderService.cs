@@ -7,6 +7,9 @@ using FoodStore.Core.ServicesContracts.IProducts;
 
 namespace FoodStore.Core.Services.Products
 {
+    /// <summary>
+    ///  Product service layer (Adder) where business logic lives and it calls the repository layer
+    /// </summary>
     public class ProductsAdderService : IProductsAdderService
     {
         private readonly IProductsRepository _productsRepository;
