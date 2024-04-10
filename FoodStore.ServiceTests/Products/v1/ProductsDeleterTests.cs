@@ -8,6 +8,9 @@ using Moq;
 
 namespace FoodStore.ServiceTests.Products.v1
 {
+    /// <summary>
+    ///  Unit testing for ProductDeleterService V1
+    /// </summary>
     public class ProductsDeleterTests
     {
         private readonly IProductsDeleterService _productsDeleterService;
@@ -28,9 +31,9 @@ namespace FoodStore.ServiceTests.Products.v1
             _productsDeleterService = new ProductsDeleterService(_productsRepository);
         }
 
-        //If you supply an valid PersonID, it should return true
+        //If you supply an valid ProductID, it should return true
         [Fact]
-        public async Task DeletePerson_ValidPersonID_ToBeSuccessful()
+        public async Task DeleteProductID_ValidroductID_ToBeSuccessful()
         {
             //Arrange
             Product product = new Product()

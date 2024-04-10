@@ -12,6 +12,9 @@ using Moq;
 
 namespace FoodStore.ServiceTests.Products.v1
 {
+    /// <summary>
+    ///  Unit testing for ProductAdderService V1
+    /// </summary>
     public class ProductsAdderTests
     {
         private readonly IProductsAdderService _productsAdderService;

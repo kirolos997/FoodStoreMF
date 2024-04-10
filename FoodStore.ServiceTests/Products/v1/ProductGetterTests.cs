@@ -12,6 +12,9 @@ using System.Linq.Expressions;
 
 namespace FoodStore.ServiceTests.Products.v1
 {
+    /// <summary>
+    ///  Unit testing for ProductGetterService V1
+    /// </summary>
     public class ProductGetterTests
     {
 
