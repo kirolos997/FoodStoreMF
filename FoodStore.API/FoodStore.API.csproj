@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="_categories.json" />
+    <Content Remove="_products.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Asp.Versioning.Mvc" Version="8.0.0" />
     <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.0.0" />
     <PackageReference Include="FluentAssertions.AspNetCore.Mvc" Version="4.2.0" />
@@ -29,6 +34,15 @@
 
   <ItemGroup>
     <Folder Include="Logs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="FoodStore.IntegrationTests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="JSON\_categories.json" />
+    <None Include="JSON\_products.json" />
   </ItemGroup>
 
 </Project>

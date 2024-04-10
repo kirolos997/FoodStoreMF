@@ -40,7 +40,7 @@ apiVersioningBuilder.AddApiExplorer(options =>
 // Add services to the container.
 builder.Services.AddDbContext<FoodStoreDbContext>(options =>
 {
-    string connectionString = builder.Configuration["ConnectionStrings:LocalHostDb"].ToString();
+    string? connectionString = builder.Configuration["ConnectionStrings:LocalHostDb"]?.ToString();
 
     options.UseSqlServer(connectionString);
 });
@@ -70,7 +70,10 @@ builder.Services.AddScoped<IProductsDeleterService, ProductsDeleterService>();
 builder.Services.AddScoped<IProductsUpdaterService, ProductsUpdaterService>();
 builder.Services.AddScoped<IProductsAdderService, ProductsAdderService>();
 
+if (builder.Environment.IsEnvironment("Test"))
+{
 
+}
 
 
 var app = builder.Build();
@@ -83,3 +86,5 @@ app.UseHttpLogging();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { } // make the auto-generated program accessible programmatically
