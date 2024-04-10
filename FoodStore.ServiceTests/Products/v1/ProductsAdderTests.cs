@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using FoodStore.Application.DTO.Categories.v2;
+using FoodStore.Core.DTO.Categories.v2;
 using FoodStore.Core.DTO.Products.v1;
 using FoodStore.Core.Entities;
 using FoodStore.Core.Exceptions.Products;
