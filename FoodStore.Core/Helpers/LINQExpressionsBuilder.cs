@@ -5,6 +5,9 @@ using System.Linq.Expressions;
 
 namespace FoodStore.Core.Helpers
 {
+    /// <summary>
+    /// LINQ dynamic expression builder class to build expression tree for filtering the response and generating lambda function
+    /// </summary>
     public class LINQExpressionsBuilder
     {
         public static Expression<Func<T, bool>>? GetAndFilterExpression<T>(List<FilterTerm> searchTerm)
