@@ -5,10 +5,22 @@ namespace FoodStore.Infrastrucutre.DBContext
 {
     public class FoodStoreDbContext : DbContext
     {
+
         public virtual DbSet<Product> products { get; set; }
         public virtual DbSet<Category> categories { get; set; }
 
-        public FoodStoreDbContext(DbContextOptions<FoodStoreDbContext> options) : base(options) { }
+        public FoodStoreDbContext(DbContextOptions<FoodStoreDbContext> options) : base(options)
+        {
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+            if (env == "IntegrationTest")
+            {
+                this.Database.EnsureDeleted();
+                this.Database.EnsureCreated();
+            }
+
+
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,15 +31,14 @@ namespace FoodStore.Infrastrucutre.DBContext
             modelBuilder.Entity<Category>().ToTable("Categories");
 
             //Seed to Categories
-            string categoriesJson = System.IO.File.ReadAllText("../FoodStore.Infrastrucutre/DBContext/_categories.json");
+            string categoriesJson = System.IO.File.ReadAllText("JSON/_categories.json");
             List<Category>? categories = System.Text.Json.JsonSerializer.Deserialize<List<Category>>(categoriesJson);
 
             foreach (Category item in categories)
                 modelBuilder.Entity<Category>().HasData(item);
 
-
             //Seed to Products
-            string productsJson = System.IO.File.ReadAllText("../FoodStore.Infrastrucutre/DBContext/_products.json");
+            string productsJson = System.IO.File.ReadAllText("JSON/_products.json");
             List<Product>? products = System.Text.Json.JsonSerializer.Deserialize<List<Product>>(productsJson);
 
             foreach (Product item in products)
@@ -39,6 +50,8 @@ namespace FoodStore.Infrastrucutre.DBContext
             // Calling OnModelCreating method from the DbContext class
             base.OnModelCreating(modelBuilder);
 
+
         }
+
     }
 }
