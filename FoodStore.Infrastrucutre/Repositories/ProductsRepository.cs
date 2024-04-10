@@ -8,6 +8,9 @@ using System.Reflection;
 
 namespace FoodStore.Infrastrucutre.Repositories
 {
+    /// <summary>
+    /// Following repository pattern to create a layer for accessing the database
+    /// </summary>
     public class ProductsRepository : IProductsRepository
     {
         private readonly FoodStoreDbContext _db;
@@ -22,6 +25,7 @@ namespace FoodStore.Infrastrucutre.Repositories
         {
             if (searchOptions is null)
             {
+                // No filter is applied
                 return await _db.products.Include("Category").Skip(pagination.Offset).Take(pagination.Limit).ToListAsync();
 
             }
